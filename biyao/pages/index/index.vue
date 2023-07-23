@@ -1,8 +1,13 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<!-- {{List}} -->
+		<text class="title">商品列表</text>
+		<view class="box">
+			<view class="li" @click="goDel(item.Id)" v-for="item in List">
+				<image class="img" :src="item.imageUrl" mode=""></image>
+				<text class="price">{{item.priceStr}}元</text>
+				<text class="li_title">{{item.title}}</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -11,13 +16,58 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
+				List: []
+			};
 		},
 		methods: {
+			getOutInfo() {
+				return new Promise((resolve, reject) => {
+					uni.request({
+						url: `http://192.168.43.24:9527/api/goodList`,
+						method: "GET",
+						data: {
+							page: 1
+						},
+						success: (res) => {
+
+							resolve(res.data); // 千万别忘写！！！
+						},
+						fail: (err) => {
+							reject('err')
+						}
+					})
+				})
+			},
+
+			goDel(id) {
+				console.log(id);
+				
+				
+				uni.navigateTo({
+					url: `../detail/detail?id=${id}`
+				});
+			}
+
+
+
+			// async getList() {
+			// 	await this.getOutInfo()
+			// }
+		},
+
+
+		beforeMount() {
+			// this.getList()
+
+		},
+		onLoad() {
+			(async () => {
+				await this.getOutInfo().then(res => {
+
+					this.List = res
+
+				})
+			})()
 
 		}
 	}
@@ -25,28 +75,58 @@
 
 <style>
 	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+		width: 100%;
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
 	}
 
 	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+		width: 100%;
+		display: inline-block;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.box {
+		width: 100%;
+
+		display: flex;
+		flex-wrap: wrap;
+		text-align: center;
+		justify-content: space-around;
+	}
+
+	.li {
+
+		width: 150px;
+		height: 260px;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 10px;
+		border: 2px solid rebeccapurple;
+
+	}
+
+	.img {
+		width: 90%;
+		height: 200px;
+		margin: 0 auto;
+		border-bottom: 1px dashed orangered;
+	}
+
+	.li_title {
+		color: gray;
+		font-size: 1rem;
+		padding-left: 0.5rem;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+	}
+
+	.price {
+		padding-left: 0.5rem;
+		font-size: 1.2rem;
+		color: red;
 	}
 </style>
