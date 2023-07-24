@@ -40,11 +40,8 @@
 			}
 		},
 		onLoad(option) {
-			console.log(option.id);
-
-
 			(async () => {
-				await this.getDel(141).then(res => {
+				await this.getDel(option.id).then(res => {
 					console.log(res);
 					this.List = res
 
@@ -58,7 +55,7 @@
 	.li {
 		margin: 0 auto;
 		width: 300px;
-		height: 90vh;
+		height: 350px;
 		border: 1px solid red;
 		display: flex;
 		flex-wrap: wrap;
@@ -72,7 +69,8 @@
 		border-bottom: 1px solid orange;
 
 	}
-	.salePoint{
+
+	.salePoint {
 		font-size: 1.2rem;
 		color: orange;
 	}

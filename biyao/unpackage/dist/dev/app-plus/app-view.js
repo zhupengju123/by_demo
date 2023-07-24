@@ -1217,7 +1217,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.li {\n\tmargin: 0 auto;\n\twidth: 300px;\n\theight: 90vh;\n\tborder: 1px solid red;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n}\n.li uni-image {\n\twidth: 260px;\n\theight: 260px;\n\tpadding-left: 20px;\n\tborder-bottom: 1px solid orange;\n}\n.salePoint{\n\tfont-size: 1.2rem;\n\tcolor: orange;\n}\n", ""]);
+exports.push([module.i, "\n.li {\n\tmargin: 0 auto;\n\twidth: 300px;\n\theight: 90vh;\n\tborder: 1px solid red;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n}\n.li uni-image {\n\twidth: 260px;\n\theight: 260px;\n\tpadding-left: 20px;\n\tborder-bottom: 1px solid orange;\n}\n.salePoint {\n\tfont-size: 1.2rem;\n\tcolor: orange;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
