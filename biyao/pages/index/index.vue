@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<!-- {{List}} -->
-		<text class="title">商品列表</text>
+		<text class="title">商品列表(num2)</text>
 		<view class="box">
 			<view class="li" @click="goDel(item.Id)" v-for="item in List">
 				<image class="img" :src="item.imageUrl" mode=""></image>
